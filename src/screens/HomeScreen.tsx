@@ -49,16 +49,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onLogout }) => {
 
   return (
     <View style={styles.container}>
+      
       <View style={styles.header}>
+        <TouchableOpacity style={styles.logoutButton} onPress={onLogout}>
+          <Text style={styles.logoutButtonText}>Logout</Text>
+        </TouchableOpacity>
         <TextInput
           style={styles.searchInput}
           placeholder="Search items..."
           value={searchQuery}
           onChangeText={setSearchQuery}
         />
-        <TouchableOpacity style={styles.logoutButton} onPress={onLogout}>
-          <Text style={styles.logoutButtonText}>Logout</Text>
-        </TouchableOpacity>
       </View>
       <FlatList
         data={filteredItems}
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: 50,
   },
   header: {
     padding: 15,
@@ -93,6 +95,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     alignItems: 'center',
+    width: 100,
+    alignSelf: 'flex-end',
+    marginBottom: 10,
   },
   logoutButtonText: {
     color: '#fff',

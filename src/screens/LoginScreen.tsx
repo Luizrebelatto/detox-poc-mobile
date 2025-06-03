@@ -32,6 +32,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
         value={username}
         onChangeText={setUsername}
         autoCapitalize="none"
+        placeholderTextColor="gray"
       />
       <TextInput
         style={styles.input}
@@ -39,6 +40,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        placeholderTextColor="gray"
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
