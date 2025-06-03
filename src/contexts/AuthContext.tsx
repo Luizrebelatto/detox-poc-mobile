@@ -27,9 +27,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (username: string, password: string) => {
     try {
-      // In a real app, you would validate credentials with your backend
-      // For this example, we'll just simulate a successful login
-      if (username && password) {
+      if (username === 'admin' && password === '123456') {
         await AsyncStorage.setItem('@Auth:token', 'dummy-token');
         setIsAuthenticated(true);
       } else {
