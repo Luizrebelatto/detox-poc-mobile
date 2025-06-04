@@ -25,9 +25,10 @@ interface Item {
 
 interface HomeScreenProps {
   onLogout: () => void;
+  navigation: any;
 }
 
-export const HomeScreen: React.FC<HomeScreenProps> = ({ onLogout }) => {
+export const HomeScreen: React.FC<HomeScreenProps> = ({ onLogout, navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [items] = useState<Item[]>(mockItems);
 
@@ -37,19 +38,25 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onLogout }) => {
       item.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const handleItemPress = (item: Item) => {
+    navigation.navigate('ItemDetail', { item });
+  };
+
   const renderItem = useCallback(
     ({ item }: { item: Item }) => (
-      <View style={styles.itemContainer}>
+      <TouchableOpacity 
+        style={styles.itemContainer}
+        onPress={() => handleItemPress(item)}
+      >
         <Text style={styles.itemTitle}>{item.title}</Text>
         <Text style={styles.itemDescription}>{item.description}</Text>
-      </View>
+      </TouchableOpacity>
     ),
     []
   );
 
   return (
     <View style={styles.container}>
-      
       <View style={styles.header}>
         <TouchableOpacity style={styles.logoutButton} onPress={onLogout}>
           <Text style={styles.logoutButtonText}>Logout</Text>
